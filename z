@@ -1,0 +1,14 @@
+huggingface-cli login
+# Use a pipeline as a high-level helper
+from transformers import pipeline
+
+messages = [
+    {"role": "user", "content": "Who are you?"},
+]
+pipe = pipeline("text-generation", model="CohereForAI/c4ai-command-r-v01-4bit", trust_remote_code=True)
+pipe(messages)
+# Load model directly
+from transformers import AutoTokenizer, AutoModelForCausalLM
+
+tokenizer = AutoTokenizer.from_pretrained("CohereForAI/c4ai-command-r-v01-4bit", trust_remote_code=True)
+model = AutoModelForCausalLM.from_pretrained("CohereForAI/c4ai-command-r-v01-4bit", trust_remote_code=True)
